@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Iconnect</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  	<div>
+  		<div>
+  		
+  			<img src="https://cdn1.iconfinder.com/data/icons/somacro___dpi_social_media_icons_by_vervex-dfjq/500/reddit.png"
+  			height=60>
+  		</div>
+  		<div>
+  			<% if user_signed_in? %>
+  			<p><%= current_user.email %></p>
+  			<p><%= link_to "Sign Out",
+  				destroy_user_session_path,
+  				method: :delete%></p>
+  			<% else %>
+  				<p><%= link_to "Sign In", new_user_session_path%></p>
+  				<p><%= link_to "Sign Up", new_user_registration_path %></p>
+  			<% end %>
+  		</div>
+  	</div>
+    <%= yield %>
+  </body>
+</html>
