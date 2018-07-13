@@ -13,3 +13,42 @@
  *= require_tree .
  *= require_self
  */
+
+body{
+	margin: 0;
+
+	.common-header{
+		font-color: white;
+		background-image: url("https://cmkt-image-prd.global.ssl.fastly.net/0.1.0/ps/4030999/1160/661/m1/fpnw/wm0/nature_background_with_green_leaves_and_grass-.jpg?1519082029&s=59c130c436599da9a10797b63909acfd");
+		display: flex;
+		justify-content: space-around;
+		box-shadow: 2px 2px 2px 2px lightgrey;
+		
+		.logo{
+			width: 40%;
+			text-align: left;
+		}
+
+		.auth-info-links{
+			width: 40%;
+			text-align: right;
+
+			display: flex;
+			justify-content: flex-end;
+
+			p:first-child{
+				margin-right: 15px;
+				color: cream;
+
+			}
+			a{
+			 color: white
+			 
+			}
+		}
+
+	}
+
+
+}
+

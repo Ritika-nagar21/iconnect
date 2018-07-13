@@ -1,31 +1,37 @@
 class PostsController < ApplicationController
-	before_action :authenticate_user!, only: [:create , :destroy]
-	before_action :set_post, only: [:destroy]
-	before_action :authorize_user, only: [:destroy]
+  before_action :authenticate_user!, only: [:create, :destroy]
+  before_action :set_post, only: [:destroy]
+  before_action :authorize_user, only: [:destroy]
+
   def home
-  	@post=Post.new
+    # for new posts
+  	@post = Post.new
+
+    # for list of posts
   	@posts = Post.all
+
+    # for new comment
+    @comment = Comment.new
   end
 
   def create
-  	@post= Post.create(content: params[:post][:content],
-  		user_id: current_user.id)
-  	@post.save
-  	redirect_to action: "home"
+
+  	@post = Post.create(content: params[:post][:content], user_id: current_user.id)
+    @comment = Comment.new
+  	# redirect_to action: "home"
+
   end
 
   def destroy
-  	@post.destroy
-  	# post = Post.find(params[:id])
+   @post_id = @post.id
+	 @post.destroy
 
-  	# if(post.user.id == current_user.id)
-  	# 	post.destroy
-  	# end
-
-  	redirect_to action: "home"
+  	# redirect_to action: "home"
   end
 
+
   private
+
   def set_post
   	@post = Post.find(params[:id])
   end
@@ -34,5 +40,8 @@ class PostsController < ApplicationController
   	if (@post.user_id != current_user.id)
   		redirect_to action: "home"
   	end
+
   end
+
+
 end

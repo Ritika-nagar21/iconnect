@@ -1,26 +1,37 @@
-<main>
+<main id="posts-home">
+
 	<div>Group Links</div>
-	<div>
-		<% if user_signed_in? %>
-		<%= form_for @post, url: posts_path do |f| %>
-		<%= f.label :content %>
-		<%= f.text_area :content %>
-		<%= f.submit %>
-		<% end %>
-		<% end %>
-	</div>
-	<div>
-		<ul>
-			<% @posts.each do |post| %>
-			<p><%= post.content  %></p>
-			<p><%= post.user.email %></p>
-			<% if user_signed_in? && post.user_id == current_user.id %>
-			<p><%= link_to 'Delete',
-			 destroy_post_path(post.id),
-			method: :delete%></p>
+
+	<div class="deewar-posts">
+		<div class="new-post-form">
+			<% if user_signed_in? %>
+		<%= form_for @post, remote: true do |f| %>
+				<%= f.label :content %>
+				<%= f.text_area :content %>
+
+				<%= f.submit %>
 			<% end %>
-			<% end%>
-		</ul>
+			<% end %>
+		</div>
+
+		<div >
+			<ul id="posts-list" class="posts-list">
+				<% @posts.reverse.each do |p| %>
+				<!--  -->
+					<%= render 'post', post: p %>
+
+				<% end %>
+			</ul>
+
+
+		</div>
 		
+
 	</div>
+
+
+	<div>Friends</div>
+
 </main>
+
+
